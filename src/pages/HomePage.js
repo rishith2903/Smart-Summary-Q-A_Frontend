@@ -206,11 +206,13 @@ const HomePage = () => {
                   flexDirection: 'column',
                   '&:hover': {
                     transform: 'translateY(-4px)',
-                    boxShadow: `0 8px 25px rgba(0,0,0,0.15)`,
+                    boxShadow: theme.palette.mode === 'dark'
+                      ? `0 8px 25px rgba(0,0,0,0.4)`
+                      : `0 8px 25px rgba(0,0,0,0.15)`,
                   },
-                  border: '1px solid #e0e0e0',
+                  border: `1px solid ${theme.palette.divider}`,
                   borderRadius: 2,
-                  backgroundColor: '#fff',
+                  backgroundColor: theme.palette.background.paper,
                 }}
                 onClick={() => navigate(feature.path)}
               >
@@ -226,7 +228,7 @@ const HomePage = () => {
                   <Typography
                     variant="h4"
                     component="h3"
-                    sx={{ mb: 1, fontWeight: 600, color: '#333', fontSize: '1.75rem' }}
+                    sx={{ mb: 1, fontWeight: 600, color: 'text.primary', fontSize: '1.75rem' }}
                   >
                     {feature.title}
                   </Typography>
@@ -258,7 +260,7 @@ const HomePage = () => {
                   <Box sx={{ textAlign: 'left', flexGrow: 1 }}>
                     <Typography
                       variant="subtitle2"
-                      sx={{ mb: 2, fontWeight: 600, color: '#333', fontSize: '0.8rem' }}
+                      sx={{ mb: 2, fontWeight: 600, color: 'text.primary', fontSize: '0.8rem' }}
                     >
                       KEY FEATURES
                     </Typography>
@@ -269,7 +271,7 @@ const HomePage = () => {
                             width: 8,
                             height: 8,
                             borderRadius: '50%',
-                            backgroundColor: '#4caf50',
+                            backgroundColor: 'success.main',
                             mr: 2,
                             flexShrink: 0,
                           }}

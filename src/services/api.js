@@ -3,6 +3,13 @@ import axios from 'axios';
 // Base API configuration
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
+// Debug logging
+console.log('🔧 API Configuration:', {
+  API_BASE_URL,
+  NODE_ENV: process.env.NODE_ENV,
+  REACT_APP_API_URL: process.env.REACT_APP_API_URL
+});
+
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 60000, // 60 seconds timeout
@@ -62,8 +69,21 @@ api.interceptors.response.use(
 // Health API
 export const healthAPI = {
   checkHealth: async () => {
-    const response = await api.get('/api/health');
-    return response.data;
+    try {
+      console.log('🏥 Checking backend health at:', API_BASE_URL + '/api/health');
+      const response = await api.get('/api/health');
+      console.log('✅ Backend health check successful:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('❌ Backend health check failed:', {
+        message: error.message,
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        url: error.config?.url,
+        baseURL: error.config?.baseURL
+      });
+      throw error;
+    }
   },
   
   getAPIInfo: async () => {

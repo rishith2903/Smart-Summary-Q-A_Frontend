@@ -1,6 +1,18 @@
-// vite.config.js
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/Smart-Summary-Q-A_Frontend/', // change this if your GitHub repo name is different
-});
+  plugins: [react()],
+  base: '/Smart-Summary-Q-A_Frontend/',
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
+  server: {
+    port: 3000,
+  },
+})

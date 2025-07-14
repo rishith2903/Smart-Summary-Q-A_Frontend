@@ -233,4 +233,3 @@ For support and questions:
 - Material-UI for the excellent component library
 - React team for the amazing framework
 - Create React App for the development setup
-'

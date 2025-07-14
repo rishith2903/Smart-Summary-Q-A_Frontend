@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Manual Testing Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 2px solid #e1e5e9;
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        .test-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .test-item h4 {
+            margin: 0 0 10px 0;
+            color: #495057;
+        }
+        
+        .test-item p {
+            margin: 0;
+            color: #6c757d;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 15px;
+            font-size: 18px;
+            color: #007bff;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-pass {
+            background: #28a745;
+        }
+        
+        .status-fail {
+            background: #dc3545;
+        }
+        
+        .status-pending {
+            background: #ffc107;
+        }
+        
+        .url-box {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        
+        .important {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Frontend Testing Guide</h1>
+            <p>Comprehensive manual testing checklist for Video Processor AI Frontend</p>
+        </div>
+        
+        <div class="content">
+            <div class="important">
+                <h3>🚨 Prerequisites</h3>
+                <p><strong>Before testing, ensure:</strong></p>
+                <ul>
+                    <li>Backend server is running on <code>http://localhost:5000</code></li>
+                    <li>Frontend server is running on <code>http://localhost:3000</code></li>
+                    <li>Both servers are accessible and responding</li>
+                </ul>
+            </div>
+
+            <!-- Navigation Testing -->
+            <div class="test-section">
+                <div class="section-header">
+                    <h2>🧭 Navigation & Layout Testing</h2>
+                </div>
+                <div class="section-content">
+                    <div class="test-item">
+                        <h4>Navbar Functionality</h4>
+                        <ul class="checklist">
+                            <li>Logo and title are visible and clickable</li>
+                            <li>All navigation links work (Home, Video, PDF, Q&A, About)</li>
+                            <li>Active page is highlighted correctly</li>
+                            <li>Theme toggle button works (dark/light mode)</li>
+                            <li>Mobile menu works on small screens</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>Responsive Design</h4>
+                        <ul class="checklist">
+                            <li>Layout adapts to different screen sizes</li>
+                            <li>Mobile navigation drawer functions properly</li>
+                            <li>Cards and components stack correctly on mobile</li>
+                            <li>Text remains readable on all screen sizes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>Theme Switching</h4>
+                        <ul class="checklist">
+                            <li>Dark mode toggle works</li>
+                            <li>Light mode toggle works</li>
+                            <li>Theme persists across page navigation</li>
+                            <li>All components adapt to theme changes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Page Testing -->
+            <div class="test-section">
+                <div class="section-header">
+                    <h2>🏠 Home Page Testing</h2>
+                </div>
+                <div class="section-content">
+                    <div class="url-box">Test URL: http://localhost:3000/</div>
+                    
+                    <div class="test-item">
+                        <h4>Server Status Check</h4>
+                        <ul class="checklist">
+                            <li>Server status indicator shows correct status</li>
+                            <li>Green alert when backend is online</li>
+                            <li>Red alert when backend is offline</li>
+                            <li>Retry button works when server is offline</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>Feature Cards</h4>
+                        <ul class="checklist">
+                            <li>All three feature cards are displayed</li>
+                            <li>Hover effects work on cards</li>
+                            <li>Clicking cards navigates to correct pages</li>
+                            <li>Capability chips are displayed correctly</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>Call-to-Action Buttons</h4>
+                        <ul class="checklist">
+                            <li>"Start Processing" button navigates to video page</li>
+                            <li>"Learn More" button navigates to about page</li>
+                            <li>Button hover effects work</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Processor Testing -->
+            <div class="test-section">
+                <div class="section-header">
+                    <h2>📹 Video Processor Testing</h2>
+                </div>
+                <div class="section-content">
+                    <div class="url-box">Test URL: http://localhost:3000/video</div>
+                    
+                    <div class="test-item">
+                        <h4>Single Video Processing</h4>
+                        <ul class="checklist">
+                            <li>URL input field accepts YouTube URLs</li>
+                            <li>URL validation works (shows error for invalid URLs)</li>
+                            <li>Language selection dropdown works</li>
+                            <li>Process button is disabled when URL is empty</li>
+                            <li>Loading state shows during processing</li>
+                            <li>Results display correctly after processing</li>
+                            <li>Copy to clipboard buttons work</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>Batch Processing</h4>
+                        <ul class="checklist">
+                            <li>Can add multiple URL fields</li>
+                            <li>Can remove URL fields</li>
+                            <li>Batch processing works with multiple URLs</li>
+                            <li>Results show for all processed videos</li>
+                            <li>Error handling for invalid URLs in batch</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>Test URLs</h4>
+                        <p>Use these URLs for testing:</p>
+                        <ul>
+                            <li>Valid: https://www.youtube.com/watch?v=dQw4w9WgXcQ</li>
+                            <li>Valid: https://youtu.be/oHg5SJYRHA0</li>
+                            <li>Invalid: https://invalid-url.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF Processor Testing -->
+            <div class="test-section">
+                <div class="section-header">
+                    <h2>📄 PDF Processor Testing</h2>
+                </div>
+                <div class="section-content">
+                    <div class="url-box">Test URL: http://localhost:3000/pdf</div>
+                    
+                    <div class="test-item">
+                        <h4>File Upload</h4>
+                        <ul class="checklist">
+                            <li>Drag and drop area is visible</li>
+                            <li>Click to browse files works</li>
+                            <li>Only PDF files are accepted</li>
+                            <li>File size validation (10MB limit)</li>
+                            <li>Selected file information displays</li>
+                            <li>Remove file button works</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>PDF Processing</h4>
+                        <ul class="checklist">
+                            <li>Process button works after file selection</li>
+                            <li>Loading state shows during processing</li>
+                            <li>Results display extracted text and summary</li>
+                            <li>Expandable sections work</li>
+                            <li>Copy to clipboard works</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>PDF Q&A</h4>
+                        <ul class="checklist">
+                            <li>Q&A section appears after PDF processing</li>
+                            <li>Question input field works</li>
+                            <li>Ask button submits questions</li>
+                            <li>Answers display with confidence scores</li>
+                            <li>Q&A history is maintained</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q&A Page Testing -->
+            <div class="test-section">
+                <div class="section-header">
+                    <h2>❓ Q&A Assistant Testing</h2>
+                </div>
+                <div class="section-content">
+                    <div class="url-box">Test URL: http://localhost:3000/qa</div>
+                    
+                    <div class="test-item">
+                        <h4>Sample Content</h4>
+                        <ul class="checklist">
+                            <li>Three sample content cards are displayed</li>
+                            <li>Clicking sample cards loads content</li>
+                            <li>Content appears in the summary field</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>Content Input</h4>
+                        <ul class="checklist">
+                            <li>Summary text area accepts input</li>
+                            <li>Character count displays</li>
+                            <li>Question input field works</li>
+                            <li>Language selection works</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>Question Processing</h4>
+                        <ul class="checklist">
+                            <li>Ask Question button works</li>
+                            <li>Get Suggestions button works</li>
+                            <li>Loading states show during processing</li>
+                            <li>Suggested questions appear as clickable chips</li>
+                            <li>Clicking suggestions fills question field</li>
+                            <li>Answers display with confidence scores</li>
+                            <li>Q&A history is maintained</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Page Testing -->
+            <div class="test-section">
+                <div class="section-header">
+                    <h2>ℹ️ About Page Testing</h2>
+                </div>
+                <div class="section-content">
+                    <div class="url-box">Test URL: http://localhost:3000/about</div>
+                    
+                    <div class="test-item">
+                        <h4>Content Display</h4>
+                        <ul class="checklist">
+                            <li>All sections are properly displayed</li>
+                            <li>Feature cards show correctly</li>
+                            <li>Technology stack sections are visible</li>
+                            <li>API endpoints table displays</li>
+                            <li>Project information is complete</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Handling Testing -->
+            <div class="test-section">
+                <div class="section-header">
+                    <h2>🚨 Error Handling Testing</h2>
+                </div>
+                <div class="section-content">
+                    <div class="test-item">
+                        <h4>Network Errors</h4>
+                        <ul class="checklist">
+                            <li>Stop backend server and test API calls</li>
+                            <li>Error messages display correctly</li>
+                            <li>User-friendly error descriptions</li>
+                            <li>Retry functionality works</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>Input Validation</h4>
+                        <ul class="checklist">
+                            <li>Invalid YouTube URLs show errors</li>
+                            <li>Empty fields show appropriate messages</li>
+                            <li>File type validation works</li>
+                            <li>File size validation works</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Testing -->
+            <div class="test-section">
+                <div class="section-header">
+                    <h2>⚡ Performance Testing</h2>
+                </div>
+                <div class="section-content">
+                    <div class="test-item">
+                        <h4>Loading Performance</h4>
+                        <ul class="checklist">
+                            <li>Initial page load is fast</li>
+                            <li>Navigation between pages is smooth</li>
+                            <li>Images and icons load properly</li>
+                            <li>No console errors in browser dev tools</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="test-item">
+                        <h4>API Response Handling</h4>
+                        <ul class="checklist">
+                            <li>Loading indicators show during API calls</li>
+                            <li>Results display promptly after processing</li>
+                            <li>Large responses (batch processing) handle well</li>
+                            <li>Concurrent requests work properly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Checklist -->
+            <div class="test-section">
+                <div class="section-header">
+                    <h2>✅ Final Verification Checklist</h2>
+                </div>
+                <div class="section-content">
+                    <div class="test-item">
+                        <h4>Complete Application Test</h4>
+                        <ul class="checklist">
+                            <li>All pages load without errors</li>
+                            <li>All navigation links work</li>
+                            <li>Theme toggle works on all pages</li>
+                            <li>All API integrations function</li>
+                            <li>Error handling works properly</li>
+                            <li>Responsive design works on mobile</li>
+                            <li>Footer displays correctly</li>
+                            <li>No console errors in browser</li>
+                            <li>Application is ready for production</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

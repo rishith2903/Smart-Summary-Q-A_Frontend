@@ -2,7 +2,7 @@
   "name": "Smart-Summary-Q-A_Frontend",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
+  
   "description": "Frontend for Smart-Summary-Q-A platform",
   "author": "Rishith Kumar Pachipulusu",
   "homepage": "https://rishith2903.github.io/Smart-Summary-Q-A_Frontend",

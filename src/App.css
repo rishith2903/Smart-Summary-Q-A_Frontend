@@ -142,6 +142,33 @@ body {
   --card-hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
+/* Feature Cards - Video Processing and Document Intelligence */
+.feature-card {
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode for feature cards */
+[data-theme="dark"] .feature-card {
+  background-color: rgb(30, 30, 30) !important;
+  color: #ffffff !important;
+}
+
+/* CSS media query fallback for dark mode */
+@media (prefers-color-scheme: dark) {
+  .feature-card {
+    background-color: rgb(30, 30, 30);
+    color: #ffffff;
+  }
+}
+
+/* Light mode override when explicitly set */
+[data-theme="light"] .feature-card {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
 /* Text selection */
 ::selection {
   background-color: rgba(102, 126, 234, 0.3);
@@ -178,4 +205,33 @@ select:focus {
   .mobile-full-width {
     width: 100% !important;
   }
+}
+
+/* Dark mode card content fix */
+[data-theme="dark"] .MuiCardContent-root {
+  background-color: rgb(30, 30, 30) !important;
+  color: #ffffff !important;
+}
+
+/* Target the specific class if needed */
+[data-theme="dark"] .css-1dnf0tf {
+  background-color: rgb(30, 30, 30) !important;
+}
+
+/* Feature card icons and text readability */
+.feature-card .MuiSvgIcon-root {
+  color: inherit;
+}
+
+.feature-card .MuiTypography-root {
+  color: inherit;
+}
+
+/* Ensure proper contrast for feature card content */
+[data-theme="dark"] .feature-card .MuiTypography-root {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .feature-card .MuiTypography-root {
+  color: #000000 !important;
 }

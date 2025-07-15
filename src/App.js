@@ -40,8 +40,8 @@ function App() {
         dark: '#4a2c73',
       },
       background: {
-        default: darkMode ? '#121212' : '#f5f5f5',
-        paper: darkMode ? '#1e1e1e' : '#ffffff',
+        default: darkMode ? '#1e1e1e' : '#f5f5f5',
+        paper: darkMode ? '#303030' : '#ffffff',
       },
     },
     typography: {
@@ -76,6 +76,17 @@ function App() {
             boxShadow: darkMode
               ? '0 8px 32px rgba(0,0,0,0.3)'
               : '0 8px 32px rgba(0,0,0,0.1)',
+          },
+        },
+      },
+      MuiCardContent: {
+        styleOverrides: {
+          root: {
+            backgroundColor: darkMode ? '#303030' : '#ffffff',
+            color: darkMode ? '#ffffff' : '#000000',
+            '&.MuiCardContent-root': {
+              backgroundColor: darkMode ? '#303030' : '#ffffff',
+            }
           },
         },
       },
@@ -118,3 +129,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+

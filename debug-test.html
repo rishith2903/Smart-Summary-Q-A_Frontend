@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 12px 24px; margin: 10px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #1565c0; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .result { margin: 10px 0; padding: 15px; background: #f8f9fa; border-left: 4px solid #1976d2; }
+        .error { background: #ffebee; border-left-color: #f44336; }
+        .success { background: #e8f5e8; border-left-color: #4caf50; }
+        .log { font-family: monospace; font-size: 12px; background: #263238; color: #fff; padding: 10px; margin: 5px 0; border-radius: 4px; overflow-x: auto; }
+        input { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Frontend Debug Test</h1>
+        <p>This test simulates the exact API calls made by the React frontend to identify caching issues.</p>
+        
+        <div class="test-section">
+            <h2>🎯 Quick Tests</h2>
+            <button onclick="testTechnology()">Test Technology URL</button>
+            <button onclick="testBusiness()">Test Business URL</button>
+            <button onclick="testEducational()">Test Educational URL</button>
+            <button onclick="clearResults()">Clear Results</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔧 Custom Test</h2>
+            <input type="text" id="customUrl" placeholder="Enter YouTube URL" value="https://youtu.be/kEhh5HxZz3k">
+            <button onclick="testCustomUrl()">Test Custom URL</button>
+        </div>
+        
+        <div id="logs"></div>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        let testCounter = 0;
+        
+        function log(message, type = 'info') {
+            const logsDiv = document.getElementById('logs');
+            const logDiv = document.createElement('div');
+            logDiv.className = 'log';
+            logDiv.innerHTML = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logsDiv.appendChild(logDiv);
+            console.log(message);
+        }
+        
+        function addResult(content, type = 'result') {
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `result ${type}`;
+            resultDiv.innerHTML = content;
+            resultsDiv.appendChild(resultDiv);
+        }
+        
+        async function testUrl(url, testName) {
+            testCounter++;
+            const testId = `test-${testCounter}`;
+            
+            log(`🚀 Starting ${testName} (${testId}): ${url}`);
+            
+            try {
+                // Simulate exact frontend API call with cache busting
+                const requestData = {
+                    urls: [url],
+                    targetLanguage: 'en',
+                    useGpu: false,
+                    maxWorkers: 4,
+                    timestamp: Date.now(),
+                    _cacheBust: `${Date.now()}-${Math.random()}`,
+                    _testId: testId
+                };
+                
+                log(`📤 Request data: ${JSON.stringify(requestData)}`);
+                
+                const response = await fetch('http://localhost:5000/api/video/process-batch', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
+                        'Pragma': 'no-cache',
+                        'Expires': '0',
+                        'X-Test-ID': testId,
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                const result = data.data[0];
+                
+                log(`📥 Response received for ${testName}`);
+                log(`   Video ID: ${result.videoInfo.videoId}`);
+                log(`   Title: ${result.videoInfo.title}`);
+                log(`   Summary start: ${result.summary.substring(0, 80)}...`);
+                
+                // Determine content type
+                let contentType = 'OTHER';
+                if (result.summary.includes('neural') || result.summary.includes('technology')) {
+                    contentType = 'TECHNOLOGY 🔬';
+                } else if (result.summary.includes('business') || result.summary.includes('market')) {
+                    contentType = 'BUSINESS 💼';
+                } else if (result.summary.includes('educational') || result.summary.includes('learning')) {
+                    contentType = 'EDUCATIONAL 📚';
+                }
+                
+                addResult(`
+                    <h3>${testName} - ${contentType}</h3>
+                    <p><strong>Video ID:</strong> ${result.videoInfo.videoId}</p>
+                    <p><strong>Title:</strong> ${result.videoInfo.title}</p>
+                    <p><strong>Summary:</strong> ${result.summary.substring(0, 200)}...</p>
+                    <p><strong>Test ID:</strong> ${testId}</p>
+                    <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
+                `, 'success');
+                
+                log(`✅ ${testName} completed successfully - Content Type: ${contentType}`);
+                
+            } catch (error) {
+                log(`❌ ${testName} failed: ${error.message}`);
+                addResult(`
+                    <h3>${testName} - ERROR</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p><strong>URL:</strong> ${url}</p>
+                    <p><strong>Test ID:</strong> ${testId}</p>
+                `, 'error');
+            }
+        }
+        
+        function testTechnology() {
+            testUrl('https://youtu.be/kEhh5HxZz3k', 'Technology Test');
+        }
+        
+        function testBusiness() {
+            testUrl('https://youtu.be/dQw4w9WgXcQ', 'Business Test');
+        }
+        
+        function testEducational() {
+            testUrl('https://youtu.be/abc123def456', 'Educational Test');
+        }
+        
+        function testCustomUrl() {
+            const url = document.getElementById('customUrl').value;
+            if (url.trim()) {
+                testUrl(url, 'Custom Test');
+            } else {
+                alert('Please enter a URL');
+            }
+        }
+        
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+            document.getElementById('logs').innerHTML = '';
+            testCounter = 0;
+            log('🧹 Results cleared');
+        }
+        
+        // Auto-run initial test
+        window.onload = function() {
+            log('🎬 Frontend Debug Test Ready');
+            log('🚀 Auto-running all tests...');
+
+            // Auto-run all tests in sequence
+            setTimeout(() => testTechnology(), 1000);
+            setTimeout(() => testBusiness(), 3000);
+            setTimeout(() => testEducational(), 5000);
+        };
+    </script>
+</body>
+</html>

@@ -213,3 +213,17 @@ select:focus {
     width: 100% !important;
   }
 }
+
+/* Dark mode card content fix */
+[data-theme="dark"] .MuiCardContent-root {
+  background-color: #303030 !important;
+  color: #ffffff !important;
+}
+
+/* Target the specific class if needed */
+[data-theme="dark"] .css-1dnf0tf {
+  background-color: #303030 !important;
+}
+
+
+

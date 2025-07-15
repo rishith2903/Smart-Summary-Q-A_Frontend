@@ -1,6 +1,7 @@
 /* Global Styles */
 * {
   box-sizing: border-box;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
@@ -40,11 +41,6 @@ body {
   --scrollbar-track: #f1f1f1;
   --scrollbar-thumb: #c1c1c1;
   --scrollbar-thumb-hover: #a8a8a8;
-}
-
-/* Smooth transitions */
-* {
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Custom animations */
@@ -169,6 +165,17 @@ body {
   color: #000000 !important;
 }
 
+/* Dark mode card content fix */
+[data-theme="dark"] .MuiCardContent-root {
+  background-color: rgb(30, 30, 30) !important;
+  color: #ffffff !important;
+}
+
+/* Optional specific override */
+[data-theme="dark"] .css-1dnf0tf {
+  background-color: #303030 !important;
+}
+
 /* Text selection */
 ::selection {
   background-color: rgba(102, 126, 234, 0.3);
@@ -209,29 +216,14 @@ select:focus {
 
 /* Dark mode card content fix */
 [data-theme="dark"] .MuiCardContent-root {
-  background-color: rgb(30, 30, 30) !important;
+  background-color: #303030 !important;
   color: #ffffff !important;
 }
 
 /* Target the specific class if needed */
 [data-theme="dark"] .css-1dnf0tf {
-  background-color: rgb(30, 30, 30) !important;
+  background-color: #303030 !important;
 }
 
-/* Feature card icons and text readability */
-.feature-card .MuiSvgIcon-root {
-  color: inherit;
-}
 
-.feature-card .MuiTypography-root {
-  color: inherit;
-}
 
-/* Ensure proper contrast for feature card content */
-[data-theme="dark"] .feature-card .MuiTypography-root {
-  color: #ffffff !important;
-}
-
-[data-theme="light"] .feature-card .MuiTypography-root {
-  color: #000000 !important;
-}

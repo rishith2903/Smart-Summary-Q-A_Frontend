@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Smart-Summary-Q-A/static/css/main.ed617855.css",
-    "main.js": "/Smart-Summary-Q-A/static/js/main.735df605.js",
+    "main.js": "/Smart-Summary-Q-A/static/js/main.704e0d7d.js",
     "static/js/488.d908a8d1.chunk.js": "/Smart-Summary-Q-A/static/js/488.d908a8d1.chunk.js",
     "index.html": "/Smart-Summary-Q-A/index.html",
     "main.ed617855.css.map": "/Smart-Summary-Q-A/static/css/main.ed617855.css.map",
-    "main.735df605.js.map": "/Smart-Summary-Q-A/static/js/main.735df605.js.map",
+    "main.704e0d7d.js.map": "/Smart-Summary-Q-A/static/js/main.704e0d7d.js.map",
     "488.d908a8d1.chunk.js.map": "/Smart-Summary-Q-A/static/js/488.d908a8d1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ed617855.css",
-    "static/js/main.735df605.js"
+    "static/js/main.704e0d7d.js"
   ]
 }

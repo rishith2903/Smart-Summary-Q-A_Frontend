@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Frontend for Smart-Summary-Q-A platform",
   "author": "Rishith Kumar Pachipulusu",
-  "homepage": "https://rishith2903.github.io/Smart-Summary-Q-A_Frontend",
+  "homepage": "https://rishith2903.github.io/Smart-Summary-Q-A",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

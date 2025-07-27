@@ -1,13 +1,17 @@
 import axios from 'axios';
 
-// Base API configuration
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+// Base API configuration - Support both Vite and Create React App
+const API_BASE_URL = import.meta.env?.VITE_API_URL ||
+                     process.env.REACT_APP_API_URL ||
+                     'http://localhost:5001';
 
 // Debug logging
 console.log('🔧 API Configuration:', {
   API_BASE_URL,
-  NODE_ENV: process.env.NODE_ENV,
-  REACT_APP_API_URL: process.env.REACT_APP_API_URL
+  NODE_ENV: import.meta.env?.MODE || process.env.NODE_ENV,
+  VITE_API_URL: import.meta.env?.VITE_API_URL,
+  REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+  BUILD_TOOL: import.meta.env ? 'Vite' : 'Create React App'
 });
 
 const api = axios.create({

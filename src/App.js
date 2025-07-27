@@ -107,7 +107,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <ErrorBoundary>
-          <Router basename="/Smart-Summary-Q-A">
+          <Router>
             <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
               <Navbar />
               <Box component="main" sx={{ flexGrow: 1, pt: 2 }}>
